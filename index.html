@@ -8,14 +8,13 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to top, #ff1a1a, #330000);
-    overflow: hidden;
+    background: linear-gradient(to bottom, #8b0000, #1a0000);
     font-family: Arial, sans-serif;
     text-align: center;
     color: white;
 }
 
-/* Password screen */
+/* Lock screen */
 #lockScreen {
     position: fixed;
     width: 100%;
@@ -25,133 +24,105 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 10;
 }
 
 input {
     padding: 10px;
-    font-size: 16px;
     border-radius: 10px;
     border: none;
-    margin-top: 10px;
 }
 
 button {
     margin-top: 10px;
     padding: 10px 20px;
-    border: none;
     border-radius: 10px;
-    background: #ff4d6d;
+    border: none;
+    background: crimson;
     color: white;
     cursor: pointer;
 }
 
-/* Floating roses */
-.rose {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: url('https://cdn-icons-png.flaticon.com/512/616/616490.png');
-    background-size: cover;
-    animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-    from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
+/* Main content */
 .container {
-    position: relative;
-    top: 15%;
-    z-index: 2;
+    display: none;
+    padding-top: 50px;
 }
 
+/* Bouquet image */
+.bouquet {
+    width: 220px;
+    margin-top: 20px;
+}
+
+/* Bear */
+.bear {
+    width: 180px;
+    margin-top: 20px;
+}
+
+/* Text */
 h1 {
-    font-size: 42px;
-    color: #ffccd5;
+    font-size: 38px;
+    color: #ffb3b3;
 }
 
 p {
-    width: 70%;
+    width: 80%;
     margin: auto;
     font-size: 18px;
-}
-
-.bear {
-    width: 200px;
     margin-top: 20px;
-    border-radius: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Password Screen -->
+<!-- LOCK -->
 <div id="lockScreen">
     <h2>Enter Password ❤️</h2>
-    <input type="password" id="passwordInput" placeholder="Password">
-    <button onclick="checkPassword()">Enter</button>
+    <input type="password" id="pw">
+    <button onclick="unlock()">Enter</button>
 </div>
 
-<!-- Main Content -->
-<div class="container" id="mainContent" style="display:none;">
+<!-- CONTENT -->
+<div class="container" id="content">
+
     <h1>Happy Birthday, Grace ❤️</h1>
 
+    <!-- Bouquet -->
+    <img class="bouquet" src="https://i.imgur.com/Z6XbK0O.png">
+
+    <!-- Bear -->
     <img class="bear" src="https://i.imgur.com/6M513yN.png">
 
     <p>
-        Baby, today is all about you. I just want you to know how much you mean to me.
-        You make my life brighter in every possible way. Every moment with you feels special,
-        and I’m so lucky to have you. I hope today brings you all the happiness you deserve.
-        I love you more than words can ever explain.
+        Baby, this is your special day, and I just want to remind you how much you mean to me.
+        You’re my happiness, my peace, and the best thing that’s ever happened to me.
+        Every moment with you is something I’ll always cherish.
+        I love you more than words can ever explain, and I hope today is as beautiful as you are.
     </p>
+
 </div>
 
-<!-- Music -->
-<audio id="bgMusic" loop>
+<!-- MUSIC -->
+<audio id="music" loop>
     <source src="https://www.dropbox.com/scl/fi/0h6k2y3q0z8x0kz5b2n4b/photograph.mp3?raw=1" type="audio/mp3">
 </audio>
 
 <script>
-// PASSWORD (change this to anything you want)
-const correctPassword = "graceonlymine:3";
+const password = "graceonlymine:3";
 
-function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
+function unlock() {
+    const input = document.getElementById("pw").value;
 
-    if (input === correctPassword) {
+    if (input === password) {
         document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("bgMusic").play();
+        document.getElementById("content").style.display = "block";
+        document.getElementById("music").play();
     } else {
-        alert("Wrong password 😭");
+        alert("Wrong password😭");
     }
 }
-
-// Roses animation
-function createRose() {
-    const rose = document.createElement("div");
-    rose.classList.add("rose");
-
-    rose.style.left = Math.random() * 100 + "vw";
-    rose.style.animationDuration = (3 + Math.random() * 5) + "s";
-
-    document.body.appendChild(rose);
-
-    setTimeout(() => {
-        rose.remove();
-    }, 8000);
-}
-
-setInterval(createRose, 300);
 </script>
 
 </body>
