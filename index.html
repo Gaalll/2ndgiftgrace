@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Grace ❤️</title>
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to top, #ff1a1a, #330000);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+/* Password screen */
+#lockScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+/* Floating roses */
+.rose {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('https://cdn-icons-png.flaticon.com/512/616/616490.png');
+    background-size: cover;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    top: 15%;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 42px;
+    color: #ffccd5;
+}
+
+p {
+    width: 70%;
+    margin: auto;
+    font-size: 18px;
+}
+
+.bear {
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Password Screen -->
+<div id="lockScreen">
+    <h2>Enter Password ❤️</h2>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+</div>
+
+<!-- Main Content -->
+<div class="container" id="mainContent" style="display:none;">
+    <h1>Happy Birthday, Grace ❤️</h1>
+
+    <img class="bear" src="https://i.imgur.com/6M513yN.png">
+
+    <p>
+        Baby, today is all about you. I just want you to know how much you mean to me.
+        You make my life brighter in every possible way. Every moment with you feels special,
+        and I’m so lucky to have you. I hope today brings you all the happiness you deserve.
+        I love you more than words can ever explain.
+    </p>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+    <source src="https://www.dropbox.com/scl/fi/0h6k2y3q0z8x0kz5b2n4b/photograph.mp3?raw=1" type="audio/mp3">
+</audio>
+
+<script>
+// PASSWORD (change this to anything you want)
+const correctPassword = "grace123";
+
+function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+
+    if (input === correctPassword) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgMusic").play();
+    } else {
+        alert("Wrong password 😭");
+    }
+}
+
+// Roses animation
+function createRose() {
+    const rose = document.createElement("div");
+    rose.classList.add("rose");
+
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(rose);
+
+    setTimeout(() => {
+        rose.remove();
+    }, 8000);
+}
+
+setInterval(createRose, 300);
+</script>
+
+</body>
+</html>
