@@ -2,126 +2,209 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Grace ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🩵 For Grace 🤍</title>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #8b0000, #1a0000);
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: white;
+  background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+  min-height: 100vh;
+  color: white;
+  text-align: center;
 }
 
-/* Lock screen */
-#lockScreen {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* LOCK SCREEN */
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff3333, #ff6666);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.9s ease;
 }
 
-input {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
+.lock-screen.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lock-box {
+  background: rgba(255,255,255,0.18);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.lock-box input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
 }
 
 button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    background: crimson;
-    color: white;
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
 }
 
-/* Main content */
+/* MAIN */
 .container {
-    display: none;
-    padding-top: 50px;
+  display: none;
+  padding: 40px 15px;
 }
 
-/* Bouquet image */
+.container.show {
+  display: block;
+}
+
+.name {
+  font-size: 3rem;
+  color: #ffb3b3;
+  text-shadow: 0 0 20px #ffb3b3;
+  margin-bottom: 20px;
+}
+
+/* 🌹 BOUQUET */
 .bouquet {
-    width: 220px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Bear */
-.bear {
-    width: 180px;
-    margin-top: 20px;
+.bouquet span {
+  font-size: 34px;
+  animation: floatRose 2.5s ease-in-out infinite;
 }
 
-/* Text */
-h1 {
-    font-size: 38px;
-    color: #ffb3b3;
+.bouquet span:nth-child(2){animation-delay:0.2s;}
+.bouquet span:nth-child(3){animation-delay:0.4s;}
+.bouquet span:nth-child(4){animation-delay:0.6s;}
+.bouquet span:nth-child(5){animation-delay:0.8s;}
+
+@keyframes floatRose {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
 }
 
-p {
-    width: 80%;
-    margin: auto;
-    font-size: 18px;
-    margin-top: 20px;
+/* PHOTO */
+.photo {
+  width: 180px;
+  height: 180px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.letter {
+  line-height: 1.6;
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- LOCK -->
-<div id="lockScreen">
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-box">
     <h2>Enter Password ❤️</h2>
-    <input type="password" id="pw">
-    <button onclick="unlock()">Enter</button>
+    <input type="password" id="passwordInput">
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+  </div>
 </div>
 
-<!-- CONTENT -->
-<div class="container" id="content">
+<!-- MAIN -->
+<div class="container" id="mainContent">
 
-    <h1>Happy Birthday, Grace ❤️</h1>
+  <div class="name">Grace 🤍</div>
 
-    <!-- Bouquet -->
-    <img class="bouquet" src="https://i.imgur.com/Z6XbK0O.png">
+  <!-- 🌹 Bouquet -->
+  <div class="bouquet">
+    <span>🌹</span>
+    <span>🌹</span>
+    <span>🌹</span>
+    <span>🌹</span>
+    <span>🌹</span>
+  </div>
 
-    <!-- Bear -->
-    <img class="bear" src="https://i.imgur.com/6M513yN.png">
+  <!-- PHOTO -->
+  <div class="photo">
+    <img src="us.png">
+  </div>
 
-    <p>
-        Baby, this is your special day, and I just want to remind you how much you mean to me.
-        You’re my happiness, my peace, and the best thing that’s ever happened to me.
-        Every moment with you is something I’ll always cherish.
-        I love you more than words can ever explain, and I hope today is as beautiful as you are.
-    </p>
+  <!-- MESSAGE -->
+  <div class="card">
+    <div class="letter">
+      Dear Grace,<br><br>
+
+      I really do love you more than I can explain. You’ve become such an important part of my life,
+      and having you by my side means everything to me. You make my days brighter and my life feel complete.<br><br>
+
+      I appreciate everything about you, from the way you care to the little things you do.
+      Being with you is something I never take for granted.<br><br>
+
+      I want you to always feel safe, loved, and valued with me.
+      Happy Birthday my baby 🤍<br><br>
+
+      – yours ❤️
+    </div>
+  </div>
 
 </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-    <source src="https://www.dropbox.com/scl/fi/0h6k2y3q0z8x0kz5b2n4b/photograph.mp3?raw=1" type="audio/mp3">
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="photograph.mp3" type="audio/mp3">
 </audio>
 
 <script>
-const password = "graceonlymine:3";
+const correctPassword = "graceonlymine:3";
 
-function unlock() {
-    const input = document.getElementById("pw").value;
+function checkPassword(){
+  const input = document.getElementById("passwordInput").value;
 
-    if (input === password) {
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("content").style.display = "block";
-        document.getElementById("music").play();
-    } else {
-        alert("Wrong password😭");
-    }
+  if(input === correctPassword){
+    document.getElementById("lockScreen").classList.add("hide");
+
+    setTimeout(()=>{
+      document.getElementById("mainContent").classList.add("show");
+      document.getElementById("bgMusic").play();
+    }, 900);
+
+  } else {
+    alert("Wrong password");
+  }
 }
 </script>
 
