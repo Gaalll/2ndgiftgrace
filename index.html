@@ -183,15 +183,53 @@ button {
 
 </div>
 
-<!-- 🎵 MUSIC -->
-<iframe id="ytPlayer"
-width="0"
-height="0"
-src="https://youtu.be/nSDgHBxUbVQ?si=5LkmAXQE62EJvfHi"
-frameborder="0"
-allow="autoplay">
-</iframe>
+<!-- PLAY SONG BUTTON -->
+<button id="playSongBtn">🎶 Play my song</button>
+
+<!-- Hidden YouTube player (autoplay) -->
+<div id="ytPlayer" style="display:none; margin-top:10px;">
+  <iframe 
+    id="ytFrame"
+    width="300" 
+    height="50"
+    src=""
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
+
 <script>
+// PLAY SONG BUTTON
+const playBtn = document.getElementById("playSongBtn");
+const ytPlayer = document.getElementById("ytPlayer");
+const ytFrame = document.getElementById("ytFrame");
+
+// Verse timestamps: 3:20 → 4:15
+const startTime = 200; // 3:20 in seconds
+const endTime = 255;   // 4:15 in seconds
+
+playBtn.addEventListener("click", () => {
+    // Show the player (optional)
+    ytPlayer.style.display = "block";
+
+    // Play the verse
+    ytFrame.src = `https://www.youtube.com/embed/nSDgHBxUbVQ?start=${startTime}&autoplay=1`;
+
+    // Optional: trigger hearts/confetti if you already have them
+    if (typeof burstHearts === "function") burstHearts();
+    if (typeof confettiHearts === "function") confettiHearts();
+
+    // Disable button while playing
+    playBtn.disabled = true;
+    playBtn.textContent = "🎶 Playing...";
+
+    // Stop after the verse ends
+    setTimeout(() => {
+        ytFrame.src = "";
+    }, (endTime - startTime) * 1000); // 55 seconds
+});
+</script>
 const correctPassword = "graceonlymine:3";
 
 function checkPassword(){
