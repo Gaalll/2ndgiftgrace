@@ -128,13 +128,12 @@ button {
 .letter {
   line-height: 1.6;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- LOCK -->
+<!-- LOCK SCREEN -->
 <div class="lock-screen" id="lockScreen">
   <div class="lock-box">
     <h2>Enter Password ❤️</h2>
@@ -144,62 +143,61 @@ button {
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 <div class="container" id="mainContent">
 
   <div class="name">Grace 🤍</div>
 
   <!-- 🌹 Bouquet -->
   <div class="bouquet">
-    <span>🌹</span>
-    <span>🌹</span>
-    <span>🌹</span>
-    <span>🌹</span>
-    <span>🌹</span>
+    <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
   </div>
 
   <!-- PHOTO -->
   <div class="photo">
-    <img src="us.png">
+    <img src="us.png" alt="Us together">
   </div>
 
-  <!-- MESSAGE -->
+  <!-- LETTER -->
   <div class="card">
     <div class="letter">
       Dear Grace,<br><br>
-
       I really do love you more than I can explain. You’ve become such an important part of my life,
       and having you by my side means everything to me. You make my days brighter and my life feel complete.<br><br>
-
       I appreciate everything about you, from the way you care to the little things you do.
       Being with you is something I never take for granted.<br><br>
-
       I want you to always feel safe, loved, and valued with me.
       Happy Birthday my baby 🤍<br><br>
-
       – yours ❤️
     </div>
   </div>
 
-</div>
+  <!-- PLAY SONG BUTTON -->
+  <button id="playSongBtn">🎶 Play my song</button>
 
-<!-- PLAY SONG BUTTON -->
-<button id="playSongBtn">🎶 Play my song</button>
+  <!-- Hidden YouTube player -->
+  <div id="ytPlayer" style="display:none; margin-top:10px;">
+    <iframe id="ytFrame" width="300" height="50" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
-<!-- Hidden YouTube player (autoplay) -->
-<div id="ytPlayer" style="display:none; margin-top:10px;">
-  <iframe 
-    id="ytFrame"
-    width="300" 
-    height="50"
-    src=""
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
 </div>
 
 <script>
+// PASSWORD CHECK
+const correctPassword = "graceonlymine:3";
+
+function checkPassword(){
+  const input = document.getElementById("passwordInput").value;
+  if(input === correctPassword){
+    document.getElementById("lockScreen").classList.add("hide");
+    setTimeout(()=> {
+      document.getElementById("mainContent").classList.add("show");
+    }, 900);
+  } else {
+    alert("Wrong password 😭");
+  }
+}
+
 // PLAY SONG BUTTON
 const playBtn = document.getElementById("playSongBtn");
 const ytPlayer = document.getElementById("ytPlayer");
@@ -210,15 +208,8 @@ const startTime = 200; // 3:20 in seconds
 const endTime = 255;   // 4:15 in seconds
 
 playBtn.addEventListener("click", () => {
-    // Show the player (optional)
     ytPlayer.style.display = "block";
-
-    // Play the verse
     ytFrame.src = `https://www.youtube.com/embed/nSDgHBxUbVQ?start=${startTime}&autoplay=1`;
-
-    // Optional: trigger hearts/confetti if you already have them
-    if (typeof burstHearts === "function") burstHearts();
-    if (typeof confettiHearts === "function") confettiHearts();
 
     // Disable button while playing
     playBtn.disabled = true;
@@ -227,26 +218,8 @@ playBtn.addEventListener("click", () => {
     // Stop after the verse ends
     setTimeout(() => {
         ytFrame.src = "";
-    }, (endTime - startTime) * 1000); // 55 seconds
+    }, (endTime - startTime) * 1000);
 });
-</script>
-const correctPassword = "graceonlymine:3";
-
-function checkPassword(){
-  const input = document.getElementById("passwordInput").value;
-
-  if(input === correctPassword){
-    document.getElementById("lockScreen").classList.add("hide");
-
-    setTimeout(()=>{
-      document.getElementById("mainContent").classList.add("show");
-      document.getElementById("ytPlayer").src += "&autoplay=1";
-    }, 900);
-
-  } else {
-    alert("Wrong password😭");
-  }
-}
 </script>
 
 </body>
